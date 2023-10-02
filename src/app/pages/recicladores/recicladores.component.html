@@ -1,0 +1,39 @@
+
+<h1 class="mt-5"> todos los recicladores </h1>
+
+
+<button type="button" class="btn btn-primary mt-5">agregar un usuario</button>
+
+<div >
+<table class="table mt-5" >
+    <thead >
+      <tr>
+        
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">cedula</th>
+        <th scope="col">Departamento</th>
+        <th scope="col"> Accioness</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dat of data">
+        <td>{{dat.Nombre}}</td>
+        <td>{{dat.Apellido}}</td>
+        <td>{{dat.CC}}</td>
+        <td>{{dat.Departamento}}</td>
+        <td>
+
+          <button type="button" class="btn btn-success">actualizar</button>
+          <button type="button" class="btn btn-danger">eliminar</button>
+        </td>
+      </tr>
+    
+    
+    </tbody>
+  </table>
+
+
+ 
+</div>
+

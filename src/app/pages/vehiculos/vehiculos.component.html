@@ -1,0 +1,301 @@
+
+<h1 class="mt-5"> todos los vehiculos  </h1>
+
+
+
+
+<button type="button" class="btn btn-primary mt-5" (click)="open1(name1)">agregar un vehiculo</button>
+
+<div >
+<table class="table mt-5" >
+    <thead >
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">placa</th>
+        <th scope="col">conductor</th>
+        <th scope="col">color</th>
+        <th scope="col">marca</th>
+        <th scope="col">tipo</th>
+        <th scope="col">modelo</th>
+        <th scope="col">pasajeros</th>
+        <th scope="col">numero del vehiculo</th>
+        <th scope="col">Acciones</th>
+
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dat of data">
+    
+        <td>{{dat.id_vehiculo}}</td>
+        <td>{{dat.placa_vehiculo  }}</td>
+        <td>{{dat.conductor_vehiculo  }}</td>
+        <td>{{dat.color_vehiculo}}</td>
+        <td>{{dat.marca_vehiculo}}</td>
+        <td>{{dat.tipo_vehiculo}}</td>
+        <td>{{dat.modelo_vehiculo}}</td>
+        <td>{{dat.num_pasajeros_vehiculo}}</td>
+        <td>{{dat.anno_vehiculo}}</td>
+        <td>{{dat.length }}</td>
+
+
+        
+        <td>
+
+          <button type="button" class="btn btn-success "   (click)="open(name, dat.id_vehiculo)" >actualizar</button>
+          
+          <button type="button" class="btn btn-danger" >eliminar</button>
+
+
+        </td>
+
+   
+      </tr>
+    
+
+
+
+    
+    </tbody>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements">
+</mat-paginator>
+    
+  </table>
+ 
+
+
+  <ng-template #name let-modal style="width: 110%;">
+    <div>
+
+    <div class="modal-header">
+
+      <h4> actualizar o editar un vehiculo</h4>
+      <button type="button" class="bi bi-x-lg" (click)="modal.dismiss()">
+
+
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div >
+
+        <div class="container" style="width: 150%;">
+
+          <div class="row justify-content-start">
+            <div class="col-4">
+              <div  *ngFor="let dat of miArray1">
+
+                <h4> placa del vehiculo</h4>
+                <input class="form-control" type="text" placeholder="{{ dat.placa_vehiculo}}">
+                
+              </div>
+            </div>
+            <div class="col-4">
+              <div  *ngFor="let dat of miArray1">
+
+                <h4> conductor del vehiculo</h4>
+                <input class="form-control" type="text" placeholder="{{ dat.conductor_vehiculo}}">
+                
+              </div>
+            </div>
+          </div>
+
+
+
+            <div class="row justify-content-start mt-4">
+              <div class="col-4">
+                <div  *ngFor="let dat of miArray1">
+                  <h4> color del vehiculo</h4>
+                  <input class="form-control" type="text" placeholder="{{ dat.color_vehiculo}}">
+                  
+                </div>
+              </div>
+              <div class="col-4">
+                <div  *ngFor="let dat of miArray1">
+                  <h4> marca del vehiculo</h4>
+                  <input class="form-control" type="text" placeholder="{{ dat.marca_vehiculo}}">
+                  
+                </div>
+              </div>
+            </div>
+
+       
+
+              <div class="row justify-content-start mt-4">
+                <div class="col-4">
+                  <div  *ngFor="let dat of miArray1">
+                    <h4> modelo del vehiculo</h4>
+                    <input class="form-control" type="text" placeholder="{{ dat.modelo_vehiculo}}">
+                    
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div  *ngFor="let dat of miArray1 ">
+                    <h4> numero de pasajeros</h4>
+                    <input class="form-control" type="text" placeholder="{{ dat.num_pasajeros_vehiculo}}">
+                    
+                  </div>
+                </div>
+              </div>
+
+
+
+                <div class="row justify-content-start mt-4">
+                  <div class="col-4">
+                    <div  *ngFor="let dat of miArray1">
+                      <h4> ruedas del vehiculo</h4>
+                      <input class="form-control" type="text" placeholder="{{ dat.num_ruedas_vehiculo}}">
+                      
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div  *ngFor="let dat of miArray1">
+                      <h4> nose xd</h4>
+                      <input class="form-control" type="text" placeholder="{{ dat.anno_vehiculo}}">
+                      
+                    </div>
+                  </div>
+                </div>
+
+
+        
+
+
+        </div>
+
+     
+     
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="modal.dismiss()">actualizar</button>
+      <button type="button" class="btn btn-danger" (click)="modal.dismiss()">cancelar</button>
+
+    </div>
+  </div>
+  </ng-template>
+  
+  <ng-template #name1 let-modal style="width: 110%;">
+    <div>
+
+    <div class="modal-header">
+
+      <h4> agregar un vehiculo</h4>
+      <button type="button" class="bi bi-x-lg" (click)="modal.dismiss()">
+
+
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div >
+
+        <div class="container" style="width: 150%;">
+
+          <div class="row justify-content-start">
+            <div class="col-4">
+              <div >
+
+                <h4> placa del vehiculo</h4>
+                <input class="form-control" type="text" >
+                
+              </div>
+            </div>
+            <div class="col-4">
+              <div>
+
+                <h4> conductor del vehiculo</h4>
+                <input class="form-control" type="text">
+                
+              </div>
+            </div>
+          </div>
+
+
+
+            <div class="row justify-content-start mt-4">
+              <div class="col-4">
+                <div  >
+                  <h4> color del vehiculo</h4>
+                  <input class="form-control" type="text" >
+                  
+                </div>
+              </div>
+              <div class="col-4">
+                <div >
+                  <h4> marca del vehiculo</h4>
+                  <input class="form-control" type="text" >
+                  
+                </div>
+              </div>
+            </div>
+
+       
+
+              <div class="row justify-content-start mt-4">
+                <div class="col-4">
+                  <div >
+                    <h4> modelo del vehiculo</h4>
+                    <input class="form-control" type="text" >
+                    
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div  >
+                    <h4> numero de pasajeros</h4>
+                    <input class="form-control" type="text" >
+                    
+                  </div>
+                </div>
+              </div>
+
+
+
+                <div class="row justify-content-start mt-4">
+                  <div class="col-4">
+                    <div  >
+                      <h4> ruedas del vehiculo</h4>
+                      <input class="form-control" type="text">
+                      
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div  >
+                      <h4> nose xd</h4>
+                      <input class="form-control" type="text" >
+                      
+                    </div>
+                  </div>
+                </div>
+
+
+        
+
+
+        </div>
+
+     
+     
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="modal.dismiss()">agregar</button>
+      <button type="button" class="btn btn-danger" (click)="modal.dismiss()">cancelar</button>
+
+    </div>
+  </div>
+  </ng-template>
+
+
+
+
+  
+   
+  
+ 
+  
+</div>
+
