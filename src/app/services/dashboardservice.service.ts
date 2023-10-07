@@ -11,8 +11,8 @@ import { Observable } from "rxjs";
 export class dashboardservice {
   private apiURL1 = `${environment.apiUrl}/reciclador`;
   private apiURL2 = `${environment.apiUrl}/vehiculo`;
-  private apiURL3 = `${environment.apiUrl}/asociacion`;
-  private apiURL4 = `${environment.apiUrl}/ruta`;
+  private apiURL3 = `${environment.apiUrl}/ruta`;
+  private apiURL4 = `${environment.apiUrl}/asociacion`;
 
   constructor(private readonly http: HttpClient) {}
 

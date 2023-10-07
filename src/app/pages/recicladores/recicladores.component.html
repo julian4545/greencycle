@@ -2,36 +2,316 @@
 <h1 class="mt-5"> todos los recicladores </h1>
 
 
-<button type="button" class="btn btn-primary mt-5">agregar un usuario</button>
+<button type="button" class="btn btn-primary mt-5" (click)="open1(name1)">agregar un reciclador</button>
 
 <div >
 <table class="table mt-5" >
     <thead >
       <tr>
-        
+        <th scope="col">id</th>
         <th scope="col">Nombre</th>
         <th scope="col">Apellidos</th>
         <th scope="col">cedula</th>
         <th scope="col">Departamento</th>
-        <th scope="col"> Accioness</th>
+        <th scope="col">telefono</th>
+        <th scope="col">correo</th>
+        <th scope="col">nacimiento</th>
+
+        <th scope="col"> Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let dat of data">
+        <td>{{dat.id_reciclador}}</td>
         <td>{{dat.Nombre}}</td>
         <td>{{dat.Apellido}}</td>
         <td>{{dat.CC}}</td>
         <td>{{dat.Departamento}}</td>
+        <td>{{dat.telefono}}</td>
+        <td>{{dat.correo}}</td>
+        <td>{{dat.nacimiento}}</td>
         <td>
 
-          <button type="button" class="btn btn-success">actualizar</button>
-          <button type="button" class="btn btn-danger">eliminar</button>
+          <button type="button" class="btn btn-success" (click)="open(name, dat.id_reciclador)">actualizar</button>
+          <button type="button" class="btn btn-danger" (click)="eliminarRegistro(dat.id_reciclador)">eliminar</button>
         </td>
       </tr>
     
     
     </tbody>
   </table>
+
+
+
+
+  <ng-template #name let-modal style="width: 110%;">
+
+
+    <form [formGroup]="formulario" (ngSubmit)="actualizar()">
+      <div>
+
+        <div class="modal-header">
+
+          <h4> actualizar un reciclador</h4>
+          <button type="button" class="bi bi-x-lg" (click)="modal.dismiss()">
+
+
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div>
+
+            <div *ngFor="let dat of miArray1">
+
+              
+            
+                <div >
+                 
+                  <div *ngFor="let dat of miArray1">
+
+                    <h4> id del vehiculo</h4>
+                    <input class="form-control" type="text" id="id_reciclador" formControlName="id_reciclador"
+                      [(ngModel)]="dat.id_reciclador"  readonly required>
+
+                     
+                     
+
+
+                  </div>
+                </div>
+               
+
+
+            </div>
+
+            <div class="container mt-5" style="width: 150%;">
+
+              <div class="row justify-content-start">
+                <div class="col-4">
+                  <div *ngFor="let dat of miArray1">
+
+                    <h4> Nombre</h4>
+                    <input class="form-control" type="text" id="Nombre" formControlName="Nombre"
+                      placeholder="{{dat.Nombre}}" required>
+
+                     
+
+
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div *ngFor="let dat of miArray1">
+
+                    <h4> Apellido</h4>
+                    <input class="form-control" type="text" id="Apellido"
+                      placeholder="{{dat.Apellido}}" formControlName="Apellido" required>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="row justify-content-start mt-4">
+                <div class="col-4">
+                  <div *ngFor="let dat of miArray1">
+                    <h4>CC</h4>
+                    <input class="form-control" type="number" id="CC" placeholder="{{dat.CC}}"
+                      formControlName="CC" required>
+
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div *ngFor="let dat of miArray1">
+                    <h4> Departamento</h4>
+                    <input class="form-control" type="text" id="Departamento" placeholder="{{dat.Departamento}}"
+                      formControlName="Departamento" required>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="row justify-content-start mt-4">
+                <div class="col-4">
+                  <div *ngFor="let dat of miArray1">
+
+                  <h4> telefono</h4>
+                  <input class="form-control" type="number" id="telefono" formControlName="telefono"
+                    placeholder="hola"  placeholder="{{dat.Departamento}}"  required>
+    
+                   
+    
+    
+                </div>
+                </div>
+
+
+                
+
+
+
+                <div class="col-4">
+                  <div *ngFor="let dat of miArray1">
+                    <h4> correo</h4>
+                    <input class="form-control" type="text" id="correo" placeholder="{{dat.correo}}"
+                      formControlName="correo" required>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+              
+
+              <div class="row justify-content-start mt-4">
+                <div class="col-4">
+                  <div *ngFor="let dat of miArray1">
+                    <h4> fecha de nacimiento</h4>
+                    <input class="form-control" type="date" id="nacimiento" placeholder="{{dat.nacimiento}}"
+                      formControlName="nacimiento" required>
+
+                  </div>
+                </div>
+
+              </div>
+
+
+
+
+            </div>
+
+
+
+          </div> 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" type="submit">actualizar</button>
+          <button type="button" class="btn btn-danger" (click)="modal.dismiss()">cancelar</button>
+
+        </div>
+      </div>
+    </form>
+  </ng-template>
+
+
+  <ng-template #name1 let-modal style="width: 110%;">
+
+
+    <form [formGroup]="formulario" (ngSubmit)="agregar()">
+      <div>
+
+        <div class="modal-header">
+
+          <h4> agregar un reciclador</h4>
+          <button type="button" class="bi bi-x-lg" (click)="modal.dismiss()">
+
+
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div>
+
+            <div class="container" style="width: 150%;">
+
+              <div class="row justify-content-start">
+                <div class="col-4">
+                  <div>
+
+                    <h4> Nombre</h4>
+                    <input class="form-control" type="text" id="Nombre" formControlName="Nombre"
+                      required>
+
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+
+                    <h4> Apellido</h4>
+                    <input class="form-control" type="text" id="Apellido" formControlName="Apellido"
+                      required>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="row justify-content-start mt-4">
+                <div class="col-4">
+                  <div>
+                    <h4> CC</h4>
+                    <input class="form-control" type="number" id="CC" formControlName="CC"
+                      required>
+
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+                    <h4> Departamento</h4>
+                    <input class="form-control" type="text" id="Departamento" formControlName="Departamento"
+                      required>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="row justify-content-start mt-4">
+                <div class="col-4">
+                  <div>
+                    <h4> telefono</h4>
+                    <input class="form-control" type="number" id="telefono" formControlName="telefono" required>
+
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+                    <h4> correo</h4>
+                    <input class="form-control" type="text" id="correo" formControlName="correo"
+                      required>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+            
+
+              <div class="row justify-content-start mt-4">
+                <div class="col-4">
+                  <div>
+                    <h4>  fecha de nacimiento</h4>
+                    <input class="form-control" type="date" id="nacimiento" formControlName="nacimiento" required>
+
+                  </div>
+                </div>
+
+              </div>
+
+
+
+
+            </div>
+
+
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" type="submit">agregar</button>
+          <button type="button" class="btn btn-danger" (click)="modal.dismiss()">cancelar</button>
+
+        </div>
+      </div>
+    </form>
+  </ng-template>
 
 
  

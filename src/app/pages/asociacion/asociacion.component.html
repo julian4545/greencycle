@@ -2,17 +2,21 @@
 <h1 class="mt-5"> todas las asociaciones </h1>
 
 
-<button type="button" class="btn btn-primary mt-5" (click)="open1(name1)">agregar un vehiculo</button>
+<button type="button" class="btn btn-primary mt-5" (click)="open1(name1)">agregar una asociacion</button>
 
 <div >
 <table class="table mt-5" >
     <thead >
       <tr>
- 
+        <th scope="col">id</th>
         <th scope="col">Nombre</th>
-        <th scope="col">departamento operativo</th>
+        <th scope="col">dep operativo</th>
         <th scope="col">rut</th>
         <th scope="col"># reclicladores</th>
+        <th scope="col">km totales</th>
+        <th scope="col">total reciclado</th>
+        <th scope="col">fecha inicio</th>
+        <th scope="col">acciones</th>
 
 
 
@@ -23,15 +27,18 @@
     <tbody>
       <tr *ngFor="let dat of data">
     
-      
+        <td>{{dat.id_aso}}</td>
         <td>{{dat.Nombre}}</td>
         <td>{{dat.departamentodeoperacion  }}</td>
         <td>{{dat.rut}}</td>
         <td>{{dat.cantidadDeReciclador}}</td>
+        <td>{{dat.km_total}}</td>
+        <td>{{dat.total_reciclado}}</td>
+        <td>{{dat.fecha_creado}}</td>
         <td>
 
-          <button type="button" class="btn btn-success "   (click)="open(name, dat.id_vehiculo)" >actualizar</button>
-            <button type="button" class="btn btn-danger">eliminar</button>
+          <button type="button" class="btn btn-success "   (click)="open(name, dat.id_aso)" >actualizar</button>
+            <button type="button" class="btn btn-danger" (click)="eliminarRegistro(dat.id_aso)">eliminar</button>
           </td>
 
       
@@ -43,227 +50,303 @@
 
 
   <ng-template #name let-modal style="width: 110%;">
-    <div>
-
-    <div class="modal-header">
-
-      <h4> actualizar o editar una asociacion</h4>
-      <button type="button" class="bi bi-x-lg" (click)="modal.dismiss()">
 
 
-      </button>
-    </div>
-    <div class="modal-body">
+    <form [formGroup]="formulario" (ngSubmit)="actualizar()">
+      <div>
 
-      <div >
+        <div class="modal-header">
 
-        <div class="container" style="width: 150%;">
-
-          <div class="row justify-content-start">
-            <div class="col-4">
-              <div  *ngFor="let dat of miArray1">
-
-                <h4> placa del vehiculo</h4>
-                <input class="form-control" type="text" placeholder="{{ dat.placa_vehiculo}}">
-                
-              </div>
-            </div>
-            <div class="col-4">
-              <div  *ngFor="let dat of miArray1">
-
-                <h4> conductor del vehiculo</h4>
-                <input class="form-control" type="text" placeholder="{{ dat.conductor_vehiculo}}">
-                
-              </div>
-            </div>
-          </div>
+          <h4> actualizar una asociacion</h4>
+          <button type="button" class="bi bi-x-lg" (click)="modal.dismiss()">
 
 
-
-            <div class="row justify-content-start mt-4">
-              <div class="col-4">
-                <div  *ngFor="let dat of miArray1">
-                  <h4> color del vehiculo</h4>
-                  <input class="form-control" type="text" placeholder="{{ dat.color_vehiculo}}">
-                  
-                </div>
-              </div>
-              <div class="col-4">
-                <div  *ngFor="let dat of miArray1">
-                  <h4> marca del vehiculo</h4>
-                  <input class="form-control" type="text" placeholder="{{ dat.marca_vehiculo}}">
-                  
-                </div>
-              </div>
-            </div>
-
-       
-
-              <div class="row justify-content-start mt-4">
-                <div class="col-4">
-                  <div  *ngFor="let dat of miArray1">
-                    <h4> modelo del vehiculo</h4>
-                    <input class="form-control" type="text" placeholder="{{ dat.modelo_vehiculo}}">
-                    
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div  *ngFor="let dat of miArray1 ">
-                    <h4> numero de pasajeros</h4>
-                    <input class="form-control" type="text" placeholder="{{ dat.num_pasajeros_vehiculo}}">
-                    
-                  </div>
-                </div>
-              </div>
-
-
-
-                <div class="row justify-content-start mt-4">
-                  <div class="col-4">
-                    <div  *ngFor="let dat of miArray1">
-                      <h4> ruedas del vehiculo</h4>
-                      <input class="form-control" type="text" placeholder="{{ dat.num_ruedas_vehiculo}}">
-                      
-                    </div>
-                  </div>
-                  <div class="col-4">
-                    <div  *ngFor="let dat of miArray1">
-                      <h4> nose xd</h4>
-                      <input class="form-control" type="text" placeholder="{{ dat.anno_vehiculo}}">
-                      
-                    </div>
-                  </div>
-                </div>
-
-
-        
-
-
+          </button>
         </div>
+        <div class="modal-body">
 
-     
-     
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-success" (click)="modal.dismiss()">actualizar</button>
-      <button type="button" class="btn btn-danger" (click)="modal.dismiss()">cancelar</button>
+          <div>
 
-    </div>
-  </div>
-  </ng-template>
-  
-  <ng-template #name1 let-modal style="width: 110%;">
-    <div>
+            <div *ngFor="let dat of miArray1">
 
-    <div class="modal-header">
-
-      <h4> agregar una asociacion</h4>
-      <button type="button" class="bi bi-x-lg" (click)="modal.dismiss()">
-
-
-      </button>
-    </div>
-    <div class="modal-body">
-
-      <div >
-
-        <div class="container" style="width: 150%;">
-
-          <div class="row justify-content-start">
-            <div class="col-4">
-              <div >
-
-                <h4> placa del vehiculo</h4>
-                <input class="form-control" type="text" >
-                
-              </div>
-            </div>
-            <div class="col-4">
-              <div>
-
-                <h4> conductor del vehiculo</h4>
-                <input class="form-control" type="text">
-                
-              </div>
-            </div>
-          </div>
-
-
-
-            <div class="row justify-content-start mt-4">
-              <div class="col-4">
-                <div  >
-                  <h4> color del vehiculo</h4>
-                  <input class="form-control" type="text" >
-                  
-                </div>
-              </div>
-              <div class="col-4">
+              
+            
                 <div >
-                  <h4> marca del vehiculo</h4>
-                  <input class="form-control" type="text" >
-                  
+                 
+                  <div *ngFor="let dat of miArray1">
+
+                    <h4> id del vehiculo</h4>
+                    <input class="form-control" type="text" id="id_aso" formControlName="id_aso"
+                      [(ngModel)]="dat.id_aso"  readonly required>
+
+                     
+                     
+
+
+                  </div>
                 </div>
-              </div>
+               
+
+
             </div>
 
-       
+            <div class="container mt-5" style="width: 150%;">
+
+              <div class="row justify-content-start">
+                <div class="col-4">
+                  <div *ngFor="let dat of miArray1">
+
+                    <h4> Nombre</h4>
+                    <input class="form-control" type="text" id="Nombre" formControlName="Nombre"
+                      placeholder="{{dat.Nombre}}" required>
+
+                     
+
+
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div *ngFor="let dat of miArray1">
+
+                    <h4> departamento de operacion</h4>
+                    <input class="form-control" type="text" id="departamentodeoperacion"
+                      placeholder="{{dat.departamentodeoperacion}}" formControlName="departamentodeoperacion" required>
+
+                  </div>
+                </div>
+              </div>
+
+
 
               <div class="row justify-content-start mt-4">
                 <div class="col-4">
-                  <div >
-                    <h4> modelo del vehiculo</h4>
-                    <input class="form-control" type="text" >
-                    
+                  <div *ngFor="let dat of miArray1">
+                    <h4>rut</h4>
+                    <input class="form-control" type="number" id="rut" placeholder="{{dat.rut}}"
+                      formControlName="rut" required>
+
                   </div>
                 </div>
                 <div class="col-4">
-                  <div  >
-                    <h4> numero de pasajeros</h4>
-                    <input class="form-control" type="text" >
+                  <div *ngFor="let dat of miArray1">
+                    <h4> cantidadDeReciclador</h4>
                     
+                  
+                    <select id="cantidadDeReciclador"  formControlName="cantidadDeReciclador">
+                      <option value="" disabled selected>Selecciona una opción</option>
+                      <option value="10">10 recicladores</option>
+                      <option value="20">20 recicladores</option>
+                      <option value="30">30 recicladores</option>
+                      <option value="40">40 recicladores</option>
+                      <option value="50">50 recicladores</option>
+                      <option value="60">60 recicladores</option>
+                      <option value="70">70 recicladores</option>
+                      <option value="80">80 recicladores</option>
+                      <option value="90">90 recicladores</option>
+                      <option value="100">100 recicladores</option>
+                
+                    </select>
+
                   </div>
                 </div>
               </div>
 
 
 
-                <div class="row justify-content-start mt-4">
-                  <div class="col-4">
-                    <div  >
-                      <h4> ruedas del vehiculo</h4>
-                      <input class="form-control" type="text">
-                      
-                    </div>
-                  </div>
-                  <div class="col-4">
-                    <div  >
-                      <h4> nose xd</h4>
-                      <input class="form-control" type="text" >
-                      
-                    </div>
-                  </div>
+              <div class="row justify-content-start mt-4">
+                <div class="col-4">
+                  <div *ngFor="let dat of miArray1">
+
+                  <h4> km total</h4>
+                  <input class="form-control" type="number" id="km_total" formControlName="km_total"
+                    placeholder="hola"  placeholder="{{dat.km_total}}"  required>
+    
+                   
+    
+    
+                </div>
                 </div>
 
 
-        
+                
 
+
+
+                <div class="col-4">
+                  <div *ngFor="let dat of miArray1">
+                    <h4> total reciclado</h4>
+                    <input class="form-control" type="number" id="total_reciclado" placeholder="{{dat.total_reciclado}}"
+                      formControlName="total_reciclado" required>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+              
+
+              <div class="row justify-content-start mt-4">
+                <div class="col-4">
+                  <div *ngFor="let dat of miArray1">
+                    <h4> fecha de inicio</h4>
+                    <input class="form-control" type="date" id="fecha_creado" placeholder="{{dat.fecha_creado}}"
+                      formControlName="fecha_creado" required>
+
+                  </div>
+                </div>
+
+              </div>
+
+
+
+
+            </div>
+
+
+
+          </div> 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" type="submit">actualizar</button>
+          <button type="button" class="btn btn-danger" (click)="modal.dismiss()">cancelar</button>
 
         </div>
-
-     
-     
       </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-success" (click)="modal.dismiss()">agregar</button>
-      <button type="button" class="btn btn-danger" (click)="modal.dismiss()">cancelar</button>
-
-    </div>
-  </div>
+    </form>
   </ng-template>
 
+
+  <ng-template #name1 let-modal style="width: 110%;">
+
+
+    <form [formGroup]="formulario" (ngSubmit)="agregar()">
+      <div>
+
+        <div class="modal-header">
+
+          <h4> agregar una asociacion</h4>
+          <button type="button" class="bi bi-x-lg" (click)="modal.dismiss()">
+
+
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div>
+
+            <div class="container" style="width: 150%;">
+
+              <div class="row justify-content-start">
+                <div class="col-4">
+                  <div>
+
+                    <h4> Nombre</h4>
+                    <input class="form-control" type="text" id="Nombre" formControlName="Nombre"
+                      required>
+
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+
+                    <h4> departamento de operacion</h4>
+                    <input class="form-control" type="text" id="departamentodeoperacion" formControlName="departamentodeoperacion"
+                      required>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="row justify-content-start mt-4">
+                <div class="col-4">
+                  <div>
+                    <h4> rut</h4>
+                    <input class="form-control" type="number" id="rut" formControlName="rut"
+                      required>
+
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+                    <h4> cantidad de recicladores</h4>
+                    
+
+                      <select id="cantidadDeReciclador"  formControlName="cantidadDeReciclador">
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="10">10 recicladores</option>
+                        <option value="20">20 recicladores</option>
+                        <option value="30">30 recicladores</option>
+                        <option value="40">40 recicladores</option>
+                        <option value="50">50 recicladores</option>
+                        <option value="60">60 recicladores</option>
+                        <option value="70">70 recicladores</option>
+                        <option value="80">80 recicladores</option>
+                        <option value="90">90 recicladores</option>
+                        <option value="100">100 recicladores</option>
+                  
+                      </select>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="row justify-content-start mt-4">
+                <div class="col-4">
+                  <div>
+                    <h4> km_total</h4>
+                    <input class="form-control" type="number" id="km_total" formControlName="km_total" required>
+
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+                    <h4> total_reciclado</h4>
+                    <input class="form-control" type="number" id="total_reciclado" formControlName="total_reciclado"
+                      required>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+            
+
+              <div class="row justify-content-start mt-4">
+                <div class="col-4">
+                  <div>
+                    <h4>  fecha de inicio</h4>
+                    <input class="form-control" type="date" id="fecha_creado" formControlName="fecha_creado" required>
+
+                  </div>
+                </div>
+
+              </div>
+
+
+
+
+            </div>
+
+
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" type="submit">agregar</button>
+          <button type="button" class="btn btn-danger" (click)="modal.dismiss()">cancelar</button>
+
+        </div>
+      </div>
+    </form>
+  </ng-template>
+
+  
  
 </div>
 

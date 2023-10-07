@@ -62,6 +62,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       
     },
     );
+    
     this._recilado.getDataasociaciones().subscribe((result) => {
       this.asociacion = result;
       console.log("asocion", this.data);
